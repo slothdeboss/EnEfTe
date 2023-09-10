@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">EnEfTe</string>
+    <string name="discover_largest_marketplace">Discover largest NFT marketplace</string>
+    <string name="start_your_own_nft_gallery">Start your own NFT gallery now</string>
+    <string name="discovering_the_world_of_crypto_art">Discovering the  world of crypto art</string>
+    <string name="next">Next</string>
+    <string name="buy_and_sell_digital_items">Buy and Sell digital items</string>
+    <string name="all_nfts_are_unique_and_ownable">All NFTs are certifiably unique and ownable</string>
+    <string name="a_credible_and_excellent_marketplace">A credible and excellent marketplace for non-fungible token.</string>
+    <string name="connect_with_wallet">Connect with Wallet</string>
 </resources>
