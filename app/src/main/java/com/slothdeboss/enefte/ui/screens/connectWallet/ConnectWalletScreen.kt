@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -40,7 +41,7 @@ fun ConnectWalletScreen(
 ) {
 
     val viewModel: ConnectWalletScreenViewModel = viewModel()
-    val walletOption = viewModel.walletOptionEvent.collectAsState()
+    val walletOption by viewModel.walletOptionEvent.collectAsState()
 
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
@@ -102,9 +103,9 @@ fun ConnectWalletScreen(
                     onOptionClick = viewModel::onOptionClick
                 )
 
-                if (walletOption.value.shouldShowBottomSheet()) {
+                if (walletOption.shouldShowBottomSheet()) {
                     WalletOptionBottomSheet(
-                        walletOption = walletOption.value.option,
+                        walletOption = walletOption.option,
                         sheetsState = rememberModalBottomSheetState(),
                         onDismissRequest = viewModel::bottomSheetClosed,
                         onContinueClick = {}
