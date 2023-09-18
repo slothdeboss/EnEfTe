@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">EnEfTe</string>
     <string name="discover_largest_marketplace">Discover largest NFT marketplace</string>
     <string name="start_your_own_nft_gallery">Start your own NFT gallery now</string>
@@ -8,4 +8,18 @@
     <string name="all_nfts_are_unique_and_ownable">All NFTs are certifiably unique and ownable</string>
     <string name="a_credible_and_excellent_marketplace">A credible and excellent marketplace for non-fungible token.</string>
     <string name="connect_with_wallet">Connect with Wallet</string>
+    <string name="choose_your_wallet">Choose your wallet</string>
+    <string name="by_connecting_you_wallet">By connecting your wallet you agree to our</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="and" translatable="false">and</string>
+    <string name="metamask">Metamask</string>
+    <string name="trust_wallet">Trust Wallet</string>
+    <string name="enter_ethereum_address">Enter ethereum address</string>
+    <string name="metamask_link">https://metamask.io/</string>
+    <string name="trust_wallet_link">https://trustwallet.com/</string>
+    <string name="continue_label">Continue</string>
+    <string name="continue_with_trust_wallet">Click continue to connect your Trust Wallet</string>
+    <string name="continue_with_metamask_wallet">Click continue to connect your Metamask Wallet</string>
+    <string name="address">Address</string>
 </resources>
