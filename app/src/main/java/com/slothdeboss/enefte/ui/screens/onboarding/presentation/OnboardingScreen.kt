@@ -26,6 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.slothdeboss.enefte.R
 import com.slothdeboss.enefte.ui.components.button.RoundedCornerButton
 import com.slothdeboss.enefte.ui.components.tabs.CircleIndicatorRow
+import com.slothdeboss.enefte.ui.screens.onboarding.entity.OnboardingStep
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding16
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding24
@@ -35,15 +36,9 @@ private const val IMAGE_SIZE = 225
 
 @Composable
 fun OnboardingScreen(
-    viewModel: OnboardingViewModel = viewModel()
+    onboardingStep: OnboardingStep,
+    onNextClick: () -> Unit
 ) {
-
-    val step by viewModel.onboardingStep.collectAsState()
-    val shouldNavigateForward by viewModel.shouldNavigateForward.collectAsState()
-
-    LaunchedEffect(shouldNavigateForward) {
-        // TODO - navigate to the next screen
-    }
 
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
@@ -63,7 +58,7 @@ fun OnboardingScreen(
             ) {
                 Image(
                     modifier = Modifier.size(IMAGE_SIZE.dp),
-                    painter = painterResource(id = step.getImage()),
+                    painter = painterResource(id = onboardingStep.getImage()),
                     contentDescription = null
                 )
             }
@@ -80,7 +75,7 @@ fun OnboardingScreen(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = step.getStepTitle()),
+                    text = stringResource(id = onboardingStep.getStepTitle()),
                     style = typography.h1,
                     color = colors.white,
                     textAlign = TextAlign.Center
@@ -99,14 +94,14 @@ fun OnboardingScreen(
 
                 CircleIndicatorRow(
                     pagesCount = PAGES_COUNT,
-                    currentPage = step.ordinal
+                    currentPage = onboardingStep.ordinal
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
 
                 RoundedCornerButton(
                     label = R.string.next,
-                    onClick = viewModel::onNextClick
+                    onClick = onNextClick
                 )
             }
         }
@@ -117,6 +112,9 @@ fun OnboardingScreen(
 @Composable
 private fun OnboardingScreenPreview() {
     EnEfTeTheme {
-        OnboardingScreen()
+        OnboardingScreen(
+            onboardingStep = OnboardingStep.CREATE_GALLERY,
+            onNextClick = {}
+        )
     }
 }

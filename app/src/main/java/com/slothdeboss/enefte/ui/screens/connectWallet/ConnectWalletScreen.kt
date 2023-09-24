@@ -12,10 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -23,25 +20,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.slothdeboss.enefte.R
-import com.slothdeboss.enefte.ui.components.bottomSheet.WalletOptionBottomSheet
 import com.slothdeboss.enefte.ui.components.clickableText.TermsAndPolicyClickableText
 import com.slothdeboss.enefte.ui.components.wallet.ConnectWalletOptions
+import com.slothdeboss.enefte.ui.screens.connectWallet.entity.WalletOption
 import com.slothdeboss.enefte.ui.screens.connectWallet.entity.WalletOptionsProvider
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding16
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding20
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding24
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConnectWalletScreen(
+    onWalletOptionClick: (WalletOption) -> Unit,
     onBackClicked: () -> Unit,
 ) {
-
-    val viewModel: ConnectWalletScreenViewModel = viewModel()
-    val walletOption by viewModel.walletOptionEvent.collectAsState()
 
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
@@ -100,17 +93,8 @@ fun ConnectWalletScreen(
 
                 ConnectWalletOptions(
                     options = WalletOptionsProvider.provideWalletOptions(),
-                    onOptionClick = viewModel::onOptionClick
+                    onOptionClick = onWalletOptionClick
                 )
-
-                if (walletOption.shouldShowBottomSheet()) {
-                    WalletOptionBottomSheet(
-                        walletOption = walletOption.option,
-                        sheetsState = rememberModalBottomSheetState(),
-                        onDismissRequest = viewModel::bottomSheetClosed,
-                        onContinueClick = {}
-                    )
-                }
             }
         }
     }
@@ -121,6 +105,7 @@ fun ConnectWalletScreen(
 private fun ConnectWalletScreenPreview() {
     EnEfTeTheme {
         ConnectWalletScreen(
+            onWalletOptionClick = {},
             onBackClicked = {}
         )
     }

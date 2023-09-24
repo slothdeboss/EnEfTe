@@ -10,7 +10,7 @@ class OnboardingViewModel : ViewModel() {
     private val _onboardingStep = MutableStateFlow(OnboardingStep.DISCOVER_MARKETPLACE)
     val onboardingStep = _onboardingStep.asStateFlow()
 
-    private val _shouldNavigateForward = MutableStateFlow(Unit)
+    private val _shouldNavigateForward = MutableStateFlow(false)
     val shouldNavigateForward = _shouldNavigateForward.asStateFlow()
 
     fun onNextClick() {
@@ -22,7 +22,7 @@ class OnboardingViewModel : ViewModel() {
         if (nextStep != null) {
             _onboardingStep.value = nextStep
         } else {
-            _shouldNavigateForward.value = Unit
+            _shouldNavigateForward.value = true
         }
     }
 }

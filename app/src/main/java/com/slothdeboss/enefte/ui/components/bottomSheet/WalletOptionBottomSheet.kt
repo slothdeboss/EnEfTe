@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,6 +35,7 @@ import com.slothdeboss.enefte.ui.screens.connectWallet.entity.WalletOption
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding16
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding24
+import kotlinx.coroutines.launch
 
 // TODO - fix bug with bottom sheet when keyboard is open
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,6 +52,8 @@ fun WalletOptionBottomSheet(
     var address by remember { mutableStateOf("") }
 
     val buttonPadding = if (walletOption.isManual()) VerticalPadding24 else VerticalPadding16
+
+    val scope = rememberCoroutineScope()
 
     ModalBottomSheet(
         onDismissRequest = onDismissRequest,
@@ -78,7 +82,12 @@ fun WalletOptionBottomSheet(
 
             RoundedCornerButton(
                 label = R.string.continue_label,
-                onClick = { onContinueClick(walletOption) }
+                onClick = {
+                    scope.launch {
+                        sheetsState.hide()
+                        onContinueClick(walletOption)
+                    }
+                }
             )
         }
     }
