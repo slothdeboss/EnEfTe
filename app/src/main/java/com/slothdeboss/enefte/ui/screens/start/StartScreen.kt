@@ -23,7 +23,11 @@ import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 import com.slothdeboss.enefte.ui.util.values.VerticalPadding24
 
 @Composable
-fun StartScreen() {
+fun StartScreen(
+    onConnectWithWalletClicked: () -> Unit,
+    onSkipClicked: () -> Unit
+) {
+
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
 
@@ -66,13 +70,13 @@ fun StartScreen() {
                 RoundedCornerButton(
                     modifier = Modifier.weight(1f),
                     label = R.string.connect_with_wallet,
-                    onClick = { /*TODO*/ }
+                    onClick = onConnectWithWalletClicked
                 )
 
                 RoundedCornerOutlinedButton(
                     modifier = Modifier.weight(0.3f),
                     icon = R.drawable.ic_forward,
-                    onClick = { /*TODO*/ }
+                    onClick = onSkipClicked
                 )
             }
         }
@@ -83,6 +87,9 @@ fun StartScreen() {
 @Composable
 private fun StartScreenPreview() {
     EnEfTeTheme {
-        StartScreen()
+        StartScreen(
+            onConnectWithWalletClicked = {},
+            onSkipClicked = {}
+        )
     }
 }

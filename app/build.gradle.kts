@@ -49,8 +49,10 @@ android {
     }
 }
 
-val lifecycleVersion = "2.6.1"
+val lifecycleVersion = "2.6.2"
 val coroutinesVersion = "1.7.1"
+val navVersion = "2.7.3"
+
 
 dependencies {
 
@@ -61,6 +63,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
 
     // Compose
     implementation(platform("androidx.compose:compose-bom:2023.09.00"))

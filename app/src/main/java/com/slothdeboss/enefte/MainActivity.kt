@@ -3,6 +3,7 @@ package com.slothdeboss.enefte
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.slothdeboss.enefte.ui.navigation.EnEfTeNavigation
 import com.slothdeboss.enefte.ui.screens.connectWallet.ConnectWalletScreen
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 
@@ -11,9 +12,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             EnEfTeTheme {
-                ConnectWalletScreen {
-
-                }
+                EnEfTeNavigation()
             }
         }
     }

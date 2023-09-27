@@ -5,13 +5,12 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 
 @Composable
-fun EnEfTeTheme(
-    content: @Composable () -> Unit
-) {
+fun EnEfTeTheme(content: @Composable () -> Unit) {
 
     CompositionLocalProvider(
         LocalColors provides Colors,
         LocalTypography provides Typography,
+        LocalDimensions provides Dimensions,
         content = content
     )
 }
@@ -28,4 +27,8 @@ object EnEfTeTheme {
         @ReadOnlyComposable
         get() = LocalColors.current
 
+    val dimensions: EnEfTeDimensions
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalDimensions.current
 }
