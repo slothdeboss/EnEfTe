@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,9 +26,6 @@ import com.slothdeboss.enefte.ui.components.wallet.ConnectWalletOptions
 import com.slothdeboss.enefte.ui.screens.connectWallet.entity.WalletOption
 import com.slothdeboss.enefte.ui.screens.connectWallet.entity.WalletOptionsProvider
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
-import com.slothdeboss.enefte.ui.util.values.VerticalPadding16
-import com.slothdeboss.enefte.ui.util.values.VerticalPadding20
-import com.slothdeboss.enefte.ui.util.values.VerticalPadding24
 
 @Composable
 fun ConnectWalletScreen(
@@ -38,6 +35,7 @@ fun ConnectWalletScreen(
 
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
+    val dimensions = EnEfTeTheme.dimensions
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -67,21 +65,21 @@ fun ConnectWalletScreen(
             }
 
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Spacer(modifier = VerticalPadding20)
+                Spacer(modifier = Modifier.height(dimensions.dimension20))
 
                 Image(
                     painter = painterResource(id = R.drawable.ic_crypto_wallet),
                     contentDescription = null
                 )
 
-                Spacer(modifier = VerticalPadding16)
+                Spacer(modifier = Modifier.height(dimensions.dimension16))
 
                 Text(
                     text = stringResource(id = R.string.choose_your_wallet),
                     style = typography.h1.copy(color = colors.white),
                 )
 
-                Spacer(modifier = VerticalPadding16)
+                Spacer(modifier = Modifier.height(dimensions.dimension16))
 
                 TermsAndPolicyClickableText(
                     onTermsClick = { /*TODO*/ },
@@ -89,7 +87,7 @@ fun ConnectWalletScreen(
                     textAlign = TextAlign.Center
                 )
 
-                Spacer(modifier = VerticalPadding24)
+                Spacer(modifier = Modifier.height(dimensions.dimension24))
 
                 ConnectWalletOptions(
                     options = WalletOptionsProvider.provideWalletOptions(),

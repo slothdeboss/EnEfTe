@@ -31,4 +31,8 @@
     <string name="email">Email</string>
     <string name="bio">Bio</string>
     <string name="submit">Submit</string>
+    <string name="field_cant_be_blank">Field can\'t be blank</string>
+    <string name="email_is_invalid">Email is invalid</string>
+    <string name="username_is_to_short">Username is to short</string>
+    <string name="something_went_wrong">Something went wrong</string>
 </resources>

@@ -47,14 +47,14 @@ fun WelcomeScreen(closeScreen: () -> Unit) {
                 contentDescription = null
             )
 
-            Spacer(modifier = Modifier.height(dimensions.xxxLarge))
+            Spacer(modifier = Modifier.height(dimensions.dimension40))
 
             Text(
                 text = stringResource(id = R.string.welcome),
                 style = typography.h1.copy(color = colors.white)
             )
 
-            Spacer(modifier = Modifier.height(dimensions.default))
+            Spacer(modifier = Modifier.height(dimensions.dimension16))
 
             Text(
                 text = stringResource(id = R.string.create_and_sell_your_nft),
