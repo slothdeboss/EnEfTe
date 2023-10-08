@@ -6,7 +6,6 @@ import androidx.compose.runtime.ReadOnlyComposable
 
 @Composable
 fun EnEfTeTheme(content: @Composable () -> Unit) {
-
     CompositionLocalProvider(
         LocalColors provides Colors,
         LocalTypography provides Typography,

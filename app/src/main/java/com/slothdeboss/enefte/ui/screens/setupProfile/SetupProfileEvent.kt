@@ -2,9 +2,9 @@ package com.slothdeboss.enefte.ui.screens.setupProfile
 
 sealed interface SetupProfileEvent {
 
-    object NavigateBack : SetupProfileEvent
+    data object NavigateBack : SetupProfileEvent
 
-    object ValidateData : SetupProfileEvent
+    data object ValidateData : SetupProfileEvent
 
     data class UpdateField(
         val value: String,

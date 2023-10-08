@@ -1,4 +1,4 @@
-package com.slothdeboss.enefte.domain.validation
+package com.slothdeboss.enefte.domain.validation.result
 
 interface ValidationResult {
     val isValid: Boolean
