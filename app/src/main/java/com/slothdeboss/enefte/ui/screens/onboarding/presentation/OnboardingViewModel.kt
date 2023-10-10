@@ -1,17 +1,17 @@
 package com.slothdeboss.enefte.ui.screens.onboarding.presentation
 
 import androidx.lifecycle.ViewModel
+import com.slothdeboss.enefte.domain.navigation.NavigationEffect
+import com.slothdeboss.enefte.ui.navigation.OnboardingDestinations
+import com.slothdeboss.enefte.ui.screens.base.BaseViewModel
 import com.slothdeboss.enefte.ui.screens.onboarding.entity.OnboardingStep
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class OnboardingViewModel : ViewModel() {
+class OnboardingViewModel : BaseViewModel() {
 
     private val _onboardingStep = MutableStateFlow(OnboardingStep.DISCOVER_MARKETPLACE)
     val onboardingStep = _onboardingStep.asStateFlow()
-
-    private val _shouldNavigateForward = MutableStateFlow(false)
-    val shouldNavigateForward = _shouldNavigateForward.asStateFlow()
 
     fun onNextClick() {
         val nextStep = when (_onboardingStep.value) {
@@ -22,7 +22,9 @@ class OnboardingViewModel : ViewModel() {
         if (nextStep != null) {
             _onboardingStep.value = nextStep
         } else {
-            _shouldNavigateForward.value = true
+            emitNavigationEffect(
+                NavigationEffect.NavigateForwardTo(route = OnboardingDestinations.START)
+            )
         }
     }
 }

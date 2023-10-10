@@ -51,7 +51,7 @@ android {
 
 val lifecycleVersion = "2.6.2"
 val coroutinesVersion = "1.7.1"
-val navVersion = "2.7.3"
+val navVersion = "2.7.4"
 val koinBom = "3.5.1"
 val composeBom = "2023.09.00"
 val koinAnnotationsBom = "1.3.0"
@@ -75,6 +75,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material")
+
 
     // KOIN
     implementation(platform("io.insert-koin:koin-bom:$koinBom"))
