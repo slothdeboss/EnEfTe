@@ -35,6 +35,8 @@
     <string name="email_is_invalid">Email is invalid</string>
     <string name="username_is_to_short">Username is to short</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="days_left">%d days left</string>
+    <string name="eth">ETH</string>
 
     <string-array name="home_filter_tags">
         <item>Trending</item>
