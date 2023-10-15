@@ -35,4 +35,15 @@
     <string name="email_is_invalid">Email is invalid</string>
     <string name="username_is_to_short">Username is to short</string>
     <string name="something_went_wrong">Something went wrong</string>
+
+    <string-array name="home_filter_tags">
+        <item>Trending</item>
+        <item>Art</item>
+        <item>Gaming</item>
+        <item>Membership</item>
+        <item>PFPs</item>
+        <item>Photography</item>
+        <item>Music</item>
+    </string-array>
+
 </resources>
