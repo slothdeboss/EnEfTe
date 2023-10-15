@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.slothdeboss.enefte.ui.screens.connectWallet.ConnectWalletRoute
+import com.slothdeboss.enefte.ui.screens.home.HomeContainerRoute
 import com.slothdeboss.enefte.ui.screens.onboarding.presentation.OnboardingRoute
 import com.slothdeboss.enefte.ui.screens.setupProfile.SetupProfileRoute
 import com.slothdeboss.enefte.ui.screens.start.StartRoute
@@ -37,6 +38,10 @@ fun EnEfTeNavigation() {
 
         composable(route = OnboardingDestinations.SETUP_PROFILE) {
             SetupProfileRoute(navController = navController)
+        }
+
+        composable(route = HomeDestinations.HOME_CONTAINER) {
+            HomeContainerRoute(parentNavController = navController)
         }
     }
 }

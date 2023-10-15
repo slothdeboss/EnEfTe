@@ -1,10 +1,12 @@
 package com.slothdeboss.enefte.ui.screens.setupProfile
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.slothdeboss.enefte.domain.navigation.NavigationEffect
 import com.slothdeboss.enefte.domain.validation.validator.BioValidator
 import com.slothdeboss.enefte.domain.validation.validator.EmailValidator
 import com.slothdeboss.enefte.domain.validation.validator.NameValidator
+import com.slothdeboss.enefte.ui.navigation.OnboardingDestinations
+import com.slothdeboss.enefte.ui.screens.base.BaseViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +19,7 @@ class SetupProfileViewModel(
     private val emailValidator: EmailValidator,
     private val nameValidator: NameValidator,
     private val bioValidator: BioValidator
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _state = MutableStateFlow(SetupProfileState.default())
     val state = _state.asStateFlow()
@@ -27,7 +29,10 @@ class SetupProfileViewModel(
 
     fun onEvent(event: SetupProfileEvent) {
         when (event) {
-            SetupProfileEvent.NavigateBack -> sendEffect(SetupProfileEffect.NavigateBack)
+            SetupProfileEvent.NavigateBack -> emitNavigationEffect(
+                effect = NavigationEffect.NavigateBack
+            )
+
             is SetupProfileEvent.UpdateField -> updateField(event)
             SetupProfileEvent.ValidateData -> validateUserData()
         }
@@ -48,7 +53,11 @@ class SetupProfileViewModel(
             )
         }
         if (newState.isAllDataValid()) {
-            sendEffect(SetupProfileEffect.NavigateForward)
+            emitNavigationEffect(
+                effect = NavigationEffect.NavigateForwardTo(
+                    route = OnboardingDestinations.WELCOME
+                )
+            )
         }
     }
 

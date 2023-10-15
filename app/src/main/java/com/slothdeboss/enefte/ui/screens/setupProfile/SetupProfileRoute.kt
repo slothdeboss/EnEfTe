@@ -8,14 +8,15 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavHostController
 import com.slothdeboss.enefte.ui.navigation.OnboardingDestinations
+import com.slothdeboss.enefte.ui.screens.base.RouteComposable
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SetupProfileRoute(navController: NavHostController) {
 
-    val viewModel: SetupProfileViewModel = koinViewModel()
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    val viewModel: SetupProfileViewModel = koinViewModel()
     val setupProfileState by viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -23,11 +24,6 @@ fun SetupProfileRoute(navController: NavHostController) {
             .flowWithLifecycle(lifecycleOwner.lifecycle)
             .collect { effect ->
                 when (effect) {
-                    SetupProfileEffect.NavigateBack -> navController.popBackStack()
-                    SetupProfileEffect.NavigateForward -> {
-                        navController.navigate(OnboardingDestinations.WELCOME)
-                    }
-
                     SetupProfileEffect.OpenImagePicker -> {
                         // TODO - implement later
                     }
@@ -35,8 +31,13 @@ fun SetupProfileRoute(navController: NavHostController) {
             }
     }
 
-    SetupProfileScreen(
-        state = setupProfileState,
-        onEvent = viewModel::onEvent
-    )
+    RouteComposable(
+        navController = navController,
+        viewModel = viewModel
+    ) {
+        SetupProfileScreen(
+            state = setupProfileState,
+            onEvent = viewModel::onEvent
+        )
+    }
 }
