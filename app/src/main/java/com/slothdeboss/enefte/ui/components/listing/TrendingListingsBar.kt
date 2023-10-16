@@ -29,9 +29,9 @@ fun TrendingListingsBar(
         contentPadding = contentPadding
     ) {
         items(items = listings) { item ->
-            TrendingListingLot(
+            TrendingListingItem(
                 listing = item,
-                onClick = onItemClick
+                onItemClick = onItemClick
             )
         }
     }

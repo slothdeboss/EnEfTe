@@ -1,8 +1,10 @@
 package com.slothdeboss.enefte.ui.components.topAppBar
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,15 +25,18 @@ import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 fun HomeTopAppBar(
     onProfilePictureClick: () -> Unit,
     modifier: Modifier = Modifier,
-    onBalanceClick: () -> Unit = {}
+    onBalanceClick: () -> Unit = {},
+    paddingValues: PaddingValues = PaddingValues(
+        horizontal = EnEfTeTheme.dimensions.dimension24,
+        vertical = EnEfTeTheme.dimensions.dimension8
+    )
 ) {
-    val dimensions = EnEfTeTheme.dimensions
-
     Row(
         modifier = modifier
             .fillMaxWidth()
             .requiredHeight(56.dp)
-            .padding(horizontal = dimensions.dimension24),
+            .background(color = EnEfTeTheme.colors.dark)
+            .padding(paddingValues),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -50,7 +55,7 @@ fun HomeTopAppBar(
     }
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFF15202B)
+@Preview
 @Composable
 private fun Preview() {
     EnEfTeTheme {

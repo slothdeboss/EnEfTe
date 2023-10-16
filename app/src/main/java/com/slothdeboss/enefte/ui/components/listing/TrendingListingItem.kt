@@ -38,9 +38,9 @@ private const val DEFAULT_DAYS_LEFT = 10
 
 // TODO - split into smaller reusable components, add some UI logic to this card
 @Composable
-fun TrendingListingLot(
+fun TrendingListingItem(
     listing: TrendingListing,
-    onClick: (item: TrendingListing) -> Unit,
+    onItemClick: (item: TrendingListing) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -50,7 +50,7 @@ fun TrendingListingLot(
 
     Column(
         modifier = modifier
-            .clickable { onClick(listing) }
+            .clickable { onItemClick(listing) }
             .width(REQUIRED_CARD_WIDTH.dp)
             .background(
                 color = colors.secondary,
@@ -157,9 +157,9 @@ fun TrendingListingLot(
 @Composable
 private fun Preview() {
     EnEfTeTheme {
-        TrendingListingLot(
+        TrendingListingItem(
             listing = TrendingListing.default(),
-            onClick = {}
+            onItemClick = {}
         )
     }
 }

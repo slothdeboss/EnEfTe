@@ -48,4 +48,9 @@
         <item>Music</item>
     </string-array>
 
+    <string name="eth_template">%s ETH</string>
+    <string name="increased_volume">+%s\%%</string>
+    <string name="decreased_volume">-%s\%%</string>
+    <string name="trending_collections">Trending Collections</string>
+
 </resources>
