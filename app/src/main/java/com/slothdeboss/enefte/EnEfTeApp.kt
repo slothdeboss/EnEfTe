@@ -1,6 +1,8 @@
 package com.slothdeboss.enefte
 
 import android.app.Application
+import com.slothdeboss.enefte.di.EnEfTeModules
+import com.slothdeboss.enefte.di.ResourceProvidersModule
 import com.slothdeboss.enefte.di.ValidationModule
 import com.slothdeboss.enefte.di.ViewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -15,12 +17,7 @@ class EnEfTeApp: Application() {
         startKoin {
             androidContext(this@EnEfTeApp)
             androidLogger(level = Level.ERROR)
-            modules(
-                listOf(
-                    ValidationModule,
-                    ViewModelModule
-                )
-            )
+            modules(EnEfTeModules)
         }
     }
 }

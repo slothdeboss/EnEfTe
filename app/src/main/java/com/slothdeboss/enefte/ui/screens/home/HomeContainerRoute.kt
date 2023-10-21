@@ -42,7 +42,7 @@ fun HomeContainerRoute(
             startDestination = HomeDestinations.HOME
         ) {
             composable(route = HomeDestinations.HOME) {
-                HomeRoute()
+                HomeRoute(navController = parentNavController)
             }
             composable(route = HomeDestinations.DISCOVER) {
                 DiscoverRoute()
