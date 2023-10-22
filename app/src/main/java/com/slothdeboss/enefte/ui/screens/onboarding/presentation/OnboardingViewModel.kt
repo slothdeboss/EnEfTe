@@ -1,30 +1,70 @@
 package com.slothdeboss.enefte.ui.screens.onboarding.presentation
 
-import androidx.lifecycle.ViewModel
 import com.slothdeboss.enefte.domain.navigation.NavigationEffect
 import com.slothdeboss.enefte.ui.navigation.OnboardingDestinations
 import com.slothdeboss.enefte.ui.screens.base.BaseViewModel
-import com.slothdeboss.enefte.ui.screens.onboarding.entity.OnboardingStep
+import com.slothdeboss.enefte.ui.screens.onboarding.entity.OnboardingState
+import com.slothdeboss.enefte.ui.screens.onboarding.event.OnboardingEvent
+import com.slothdeboss.enefte.ui.screens.onboarding.providers.OnboardingPageListProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
-class OnboardingViewModel : BaseViewModel() {
+class OnboardingViewModel(
+    private val onboardingPageListProvider: OnboardingPageListProvider
+) : BaseViewModel() {
 
-    private val _onboardingStep = MutableStateFlow(OnboardingStep.DISCOVER_MARKETPLACE)
-    val onboardingStep = _onboardingStep.asStateFlow()
+    private val _state = MutableStateFlow(OnboardingState())
+    val state = _state.asStateFlow()
 
-    fun onNextClick() {
-        val nextStep = when (_onboardingStep.value) {
-            OnboardingStep.DISCOVER_MARKETPLACE -> OnboardingStep.CREATE_GALLERY
-            OnboardingStep.CREATE_GALLERY -> OnboardingStep.DISCOVER_WORLD_OF_ART
-            OnboardingStep.DISCOVER_WORLD_OF_ART -> null
-        }
-        if (nextStep != null) {
-            _onboardingStep.value = nextStep
-        } else {
-            emitNavigationEffect(
-                NavigationEffect.NavigateForwardTo(route = OnboardingDestinations.START)
+    init {
+        _state.update { currentState ->
+            currentState.copy(
+                pages = onboardingPageListProvider.provideData()
             )
+        }
+    }
+
+    fun onEvent(event: OnboardingEvent) {
+        when (event) {
+            is OnboardingEvent.OnCurrentPageUpdatedEvent -> onCurrentPageUpdatedEvent(event.page)
+            OnboardingEvent.OnNextOnboardingPageEvent -> onNextPageEvent()
+            OnboardingEvent.OnPreviousOnboardingPageEvent -> onPreviousPageEvent()
+        }
+    }
+
+    private fun onCurrentPageUpdatedEvent(page: Int) {
+        _state.update { currentState ->
+            currentState.copy(currentPage = page)
+        }
+    }
+
+    private fun onPreviousPageEvent() {
+        _state.update { currentState ->
+            if (currentState.currentPage > 0) {
+                currentState.copy(
+                    currentPage = currentState.currentPage - 1
+                )
+            } else {
+                currentState
+            }
+        }
+    }
+
+    private fun onNextPageEvent() {
+        _state.update { currentState ->
+            if (currentState.currentPage < currentState.pages.lastIndex) {
+                currentState.copy(
+                    currentPage = currentState.currentPage + 1
+                )
+            } else {
+                emitNavigationEffect(
+                    NavigationEffect.NavigateForwardTo(
+                        OnboardingDestinations.START
+                    )
+                )
+                currentState
+            }
         }
     }
 }

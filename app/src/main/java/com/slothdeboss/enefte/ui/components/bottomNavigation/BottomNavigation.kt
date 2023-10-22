@@ -13,7 +13,7 @@ import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 @Composable
 fun BottomNavigation(
     navController: NavHostController,
-    tabs: List<NavigationTab>
+    tabs: Array<NavigationTab>
 ) {
     val colors = EnEfTeTheme.colors
 

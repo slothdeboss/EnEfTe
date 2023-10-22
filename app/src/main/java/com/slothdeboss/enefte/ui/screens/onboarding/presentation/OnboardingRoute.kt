@@ -11,15 +11,15 @@ import org.koin.androidx.compose.koinViewModel
 fun OnboardingRoute(navController: NavHostController) {
 
     val viewModel: OnboardingViewModel = koinViewModel()
-    val step by viewModel.onboardingStep.collectAsState()
+    val state by viewModel.state.collectAsState()
 
     RouteComposable(
         navController = navController,
         viewModel = viewModel
     ) {
         OnboardingScreen(
-            onboardingStep = step,
-            onNextClick = viewModel::onNextClick
+            state = state,
+            onEvent = viewModel::onEvent
         )
     }
 }

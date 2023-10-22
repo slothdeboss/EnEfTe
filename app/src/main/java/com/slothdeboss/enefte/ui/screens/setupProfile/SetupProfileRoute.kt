@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.navigation.NavHostController
-import com.slothdeboss.enefte.ui.navigation.OnboardingDestinations
 import com.slothdeboss.enefte.ui.screens.base.RouteComposable
 import org.koin.androidx.compose.koinViewModel
 

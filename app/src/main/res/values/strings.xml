@@ -53,4 +53,10 @@
     <string name="decreased_volume">-%s\%%</string>
     <string name="trending_collections">Trending Collections</string>
 
+    <string name="wallet_option">Wallet Option</string>
+    <string name="onboarding_image">Onboarding image</string>
+    <string name="logo">Logo</string>
+    <string name="back">Back</string>
+    <string name="crypto_wallet">Crypto wallet</string>
+    <string name="welcome_image">Welcome image</string>
 </resources>

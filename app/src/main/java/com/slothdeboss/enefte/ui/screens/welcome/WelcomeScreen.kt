@@ -44,7 +44,7 @@ fun WelcomeScreen(closeScreen: () -> Unit) {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.welcome_coin_palette),
-                contentDescription = null
+                contentDescription = stringResource(id = R.string.welcome_image)
             )
 
             Spacer(modifier = Modifier.height(dimensions.dimension40))

@@ -16,6 +16,8 @@ val Dimensions = EnEfTeDimensions(
     dimension32 = 32.dp,
     dimension36 = 36.dp,
     dimension40 = 40.dp,
+    dimension44 = 44.dp,
+    dimension48 = 48.dp,
     dimension52 = 52.dp
 )
 
@@ -32,5 +34,7 @@ data class EnEfTeDimensions(
     val dimension32: Dp = Dp.Unspecified,
     val dimension36: Dp = Dp.Unspecified,
     val dimension40: Dp = Dp.Unspecified,
+    val dimension44: Dp = Dp.Unspecified,
+    val dimension48: Dp = Dp.Unspecified,
     val dimension52: Dp = Dp.Unspecified
 )
