@@ -1,5 +1,6 @@
 package com.slothdeboss.enefte.ui.screens.onboarding.presentation
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,7 +36,6 @@ import com.slothdeboss.enefte.ui.screens.onboarding.entity.OnboardingPage
 import com.slothdeboss.enefte.ui.screens.onboarding.entity.OnboardingState
 import com.slothdeboss.enefte.ui.screens.onboarding.event.OnboardingEvent
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
-import com.slothdeboss.enefte.ui.util.backPressedHandler.BackPressedHandler
 
 private const val IMAGE_SIZE = 225
 
@@ -49,7 +49,7 @@ fun OnboardingScreen(
     val pagerState = rememberPagerState { state.pages.size }
     val lifecycle = LocalLifecycleOwner.current.lifecycle
 
-    BackPressedHandler {
+    BackHandler {
         onEvent(OnboardingEvent.OnPreviousOnboardingPageEvent)
     }
 
