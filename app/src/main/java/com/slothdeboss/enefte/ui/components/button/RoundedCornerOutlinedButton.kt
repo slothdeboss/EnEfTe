@@ -17,13 +17,14 @@ import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 fun RoundedCornerOutlinedButton(
     @DrawableRes icon: Int,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val colors = EnEfTeTheme.colors
+    val shapes = EnEfTeTheme.shapes
 
     OutlinedButton(
         modifier = modifier,
-        shape = RoundedCornerShape(10.dp),
+        shape = shapes.default,
         onClick = onClick,
         border = BorderStroke(1.dp, color = colors.white)
     ) {

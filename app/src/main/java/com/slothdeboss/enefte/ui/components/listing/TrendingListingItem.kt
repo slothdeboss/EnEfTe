@@ -28,7 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.slothdeboss.enefte.R
 import com.slothdeboss.enefte.domain.listings.TrendingListing
-import com.slothdeboss.enefte.ui.components.ExpireDateLabel
+import com.slothdeboss.enefte.ui.components.expireDate.ExpireDateLabel
 import com.slothdeboss.enefte.ui.components.balance.PriceBox
 import com.slothdeboss.enefte.ui.components.balance.PriceBoxDefaults
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme

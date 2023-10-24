@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,12 +18,19 @@ import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 @Composable
 fun RoundedCornerButton(
     @StringRes label: Int,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        containerColor = EnEfTeTheme.colors.primary,
+        contentColor = EnEfTeTheme.colors.white,
+        disabledContainerColor = EnEfTeTheme.colors.grayLight,
+        disabledContentColor = EnEfTeTheme.colors.secondary
+    )
 ) {
     RoundedCornerButton(
         label = stringResource(id = label),
         modifier = modifier,
+        colors = colors,
         onClick = onClick
     )
 }
@@ -30,21 +38,22 @@ fun RoundedCornerButton(
 @Composable
 fun RoundedCornerButton(
     label: String,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit = {}
+    colors: ButtonColors = ButtonDefaults.buttonColors(
+        containerColor = EnEfTeTheme.colors.primary,
+        contentColor = EnEfTeTheme.colors.white,
+        disabledContainerColor = EnEfTeTheme.colors.grayLight,
+        disabledContentColor = EnEfTeTheme.colors.secondary
+    )
 ) {
-    val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
+    val shapes = EnEfTeTheme.shapes
 
     Button(
-        modifier = modifier.fillMaxWidth(),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = colors.primary,
-            contentColor = colors.white,
-            disabledContainerColor = colors.grayLight,
-            disabledContentColor = colors.secondary
-        ),
-        shape = RoundedCornerShape(10.dp),
+        modifier = modifier,
+        colors = colors,
+        shape = shapes.default,
         onClick = onClick
     ) {
         Text(
@@ -58,6 +67,9 @@ fun RoundedCornerButton(
 @Composable
 private fun RoundedCornerButtonPreview() {
     EnEfTeTheme {
-        RoundedCornerButton(label = R.string.next)
+        RoundedCornerButton(
+            label = R.string.next,
+            onClick = {}
+        )
     }
 }

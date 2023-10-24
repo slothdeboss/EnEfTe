@@ -1,4 +1,4 @@
-package com.slothdeboss.enefte.ui.components
+package com.slothdeboss.enefte.ui.components.expireDate
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

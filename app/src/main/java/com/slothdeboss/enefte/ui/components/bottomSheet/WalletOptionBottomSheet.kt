@@ -5,9 +5,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedTextField
@@ -33,9 +33,9 @@ import com.slothdeboss.enefte.R
 import com.slothdeboss.enefte.ui.components.button.RoundedCornerButton
 import com.slothdeboss.enefte.ui.screens.connectWallet.entity.WalletOption
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
-import com.slothdeboss.enefte.ui.util.values.VerticalPadding16
-import com.slothdeboss.enefte.ui.util.values.VerticalPadding24
 import kotlinx.coroutines.launch
+
+private const val IMAGE_SIZE = 128
 
 // TODO - fix bug with bottom sheet when keyboard is open
 @OptIn(ExperimentalMaterial3Api::class)
@@ -48,10 +48,16 @@ fun WalletOptionBottomSheet(
 ) {
 
     val colors = EnEfTeTheme.colors
+    val dimensions = EnEfTeTheme.dimensions
+    val shapes = EnEfTeTheme.shapes
 
     var address by remember { mutableStateOf("") }
 
-    val buttonPadding = if (walletOption.isManual()) VerticalPadding24 else VerticalPadding16
+    val buttonPadding = if (walletOption.isManual()) {
+        dimensions.dimension24
+    } else {
+        dimensions.dimension16
+    }
 
     val scope = rememberCoroutineScope()
 
@@ -62,9 +68,14 @@ fun WalletOptionBottomSheet(
     ) {
         Column(
             modifier = Modifier
-                .clip(RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp))
+                .clip(shapes.topDefault)
                 .background(color = colors.dark)
-                .padding(start = 24.dp, end = 24.dp, bottom = 44.dp, top = 16.dp)
+                .padding(
+                    start = dimensions.dimension24,
+                    end = dimensions.dimension24,
+                    bottom = dimensions.dimension44,
+                    top = dimensions.dimension16
+                )
         ) {
 
             if (walletOption.isManual()) {
@@ -78,7 +89,7 @@ fun WalletOptionBottomSheet(
                 )
             }
 
-            Spacer(modifier = buttonPadding)
+            Spacer(modifier = Modifier.height(buttonPadding))
 
             RoundedCornerButton(
                 label = R.string.continue_label,
@@ -87,7 +98,8 @@ fun WalletOptionBottomSheet(
                         sheetsState.hide()
                         onContinueClick(walletOption)
                     }
-                }
+                },
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }
@@ -101,6 +113,8 @@ private fun ManualEthereumWallet(
 ) {
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
+    val dimensions = EnEfTeTheme.dimensions
+    val shapes = EnEfTeTheme.shapes
 
     Column(
         modifier = modifier
@@ -110,13 +124,13 @@ private fun ManualEthereumWallet(
             style = typography.h2.copy(color = colors.white)
         )
 
-        Spacer(modifier = VerticalPadding16)
+        Spacer(modifier = Modifier.height(dimensions.dimension16))
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = value,
             onValueChange = onValueChanged,
-            shape = RoundedCornerShape(10.dp),
+            shape = shapes.default,
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = colors.secondary,
                 unfocusedContainerColor = colors.secondary,
@@ -136,9 +150,11 @@ private fun ManualEthereumWallet(
 @Composable
 private fun ConnectToExternalWallet(
     walletOption: WalletOption,
+    modifier: Modifier = Modifier
 ) {
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
+    val dimensions = EnEfTeTheme.dimensions
 
     val messageTextRes = if (walletOption.isTrust()) {
         R.string.continue_with_trust_wallet
@@ -146,19 +162,22 @@ private fun ConnectToExternalWallet(
         R.string.continue_with_metamask_wallet
     }
 
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Image(
-            modifier = Modifier.size(128.dp),
+            modifier = Modifier.size(IMAGE_SIZE.dp),
             painter = painterResource(id = walletOption.icon),
-            contentDescription = null
+            contentDescription = stringResource(id = R.string.wallet_option)
         )
 
-        Spacer(modifier = VerticalPadding16)
+        Spacer(modifier = Modifier.height(dimensions.dimension16))
 
         Text(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp),
+                .padding(horizontal = dimensions.dimension24),
             text = stringResource(id = messageTextRes),
             style = typography.body.copy(
                 color = colors.grayLight,

@@ -11,7 +11,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.slothdeboss.enefte.domain.collection.TrendingCollection
 import com.slothdeboss.enefte.domain.listings.TrendingListing
 import com.slothdeboss.enefte.ui.components.collections.TrendingCollectionsList
 import com.slothdeboss.enefte.ui.components.listing.TrendingListingsBar
@@ -67,13 +66,7 @@ fun HomeScreen(state: HomeState) {
             )
 
             TrendingCollectionsList(
-                collections = listOf(
-                    TrendingCollection.create(increased = true),
-                    TrendingCollection.create(increased = false),
-                    TrendingCollection.create(increased = false),
-                    TrendingCollection.create(increased = true),
-                    TrendingCollection.create(increased = true),
-                ),
+                collections = state.collectionsSection.collection,
                 onItemClick = {},
                 contentPadding = PaddingValues(
                     horizontal = dimensions.dimension24,

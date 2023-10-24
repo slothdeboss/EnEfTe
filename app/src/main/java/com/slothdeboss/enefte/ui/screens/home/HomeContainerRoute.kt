@@ -32,7 +32,7 @@ fun HomeContainerRoute(
         bottomBar = {
             BottomNavigation(
                 navController = navController,
-                tabs = NavigationTab.items()
+                tabs = NavigationTab.values()
             )
         }
     ) { paddingValues ->

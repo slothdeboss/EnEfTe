@@ -4,30 +4,26 @@ import androidx.annotation.DrawableRes
 import com.slothdeboss.enefte.R
 import com.slothdeboss.enefte.ui.navigation.HomeDestinations
 
-sealed class NavigationTab(
+enum class NavigationTab(
     val route: String,
     @DrawableRes
     val icon: Int
 ) {
-    data object Home : NavigationTab(
+
+    Home(
         route = HomeDestinations.HOME,
         icon = R.drawable.ic_home
-    )
-    data object Discover : NavigationTab(
+    ),
+    Discover(
         route = HomeDestinations.DISCOVER,
         icon = R.drawable.ic_search
-    )
-    data object Ranks : NavigationTab(
+    ),
+    Ranks(
         route = HomeDestinations.RANKS,
         icon = R.drawable.ic_rating
-    )
-    data object Profile : NavigationTab(
+    ),
+    Profile(
         route = HomeDestinations.PROFILE,
         icon = R.drawable.ic_profile
     )
-
-    companion object {
-
-        fun items() = listOf(Home, Discover, Ranks, Profile)
-    }
 }

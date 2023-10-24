@@ -108,7 +108,8 @@ fun SetupProfileScreen(
 
             RoundedCornerButton(
                 label = R.string.submit,
-                onClick = { onEvent(SetupProfileEvent.ValidateData) }
+                onClick = { onEvent(SetupProfileEvent.ValidateData) },
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }

@@ -1,7 +1,6 @@
 package com.slothdeboss.enefte.ui.screens.home.providers
 
 import com.slothdeboss.enefte.R
-import com.slothdeboss.enefte.domain.providers.data.FilterTagListProvider
 import com.slothdeboss.enefte.domain.tags.FilterTag
 import com.slothdeboss.enefte.ui.util.resources.string.StringArrayResourceProvider
 

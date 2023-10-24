@@ -10,6 +10,7 @@ fun EnEfTeTheme(content: @Composable () -> Unit) {
         LocalColors provides Colors,
         LocalTypography provides Typography,
         LocalDimensions provides Dimensions,
+        LocalShapes provides Shapes,
         content = content
     )
 }
@@ -30,4 +31,9 @@ object EnEfTeTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalDimensions.current
+
+    val shapes: EnEfTeShapes
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalShapes.current
 }

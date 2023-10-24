@@ -1,29 +1,51 @@
 package com.slothdeboss.enefte.ui.screens.connectWallet
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.slothdeboss.enefte.domain.navigation.NavigationEffect
+import com.slothdeboss.enefte.ui.navigation.OnboardingDestinations
+import com.slothdeboss.enefte.ui.screens.base.BaseViewModel
+import com.slothdeboss.enefte.ui.screens.connectWallet.entity.ConnectWalletState
 import com.slothdeboss.enefte.ui.screens.connectWallet.entity.WalletOption
+import com.slothdeboss.enefte.ui.screens.connectWallet.event.ConnectWalletScreenEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 
-class ConnectWalletScreenViewModel : ViewModel() {
+class ConnectWalletScreenViewModel : BaseViewModel() {
 
-    private val _walletOptionEvent = MutableStateFlow(WalletOptionEvent.unspecified())
-    val walletOptionEvent = _walletOptionEvent.asStateFlow()
+    private val _state = MutableStateFlow(ConnectWalletState.default())
+    val state = _state.asStateFlow()
 
-    fun onOptionClick(option: WalletOption) {
-        viewModelScope.launch {
-            _walletOptionEvent.emit(WalletOptionEvent.create(option))
+    fun onEvent(event: ConnectWalletScreenEvent) {
+        when (event) {
+            ConnectWalletScreenEvent.CloseBottomSheetEvent -> updateBottomSheetState(shouldShow = false)
+            is ConnectWalletScreenEvent.OnWalletOptionClicked -> updateWalletOption(event.option)
+            ConnectWalletScreenEvent.OpenBottomSheetEvent -> updateBottomSheetState(shouldShow = true)
+            ConnectWalletScreenEvent.OnBackClickedEvent -> emitNavigationEffect(
+                NavigationEffect.NavigateBack
+            )
+            ConnectWalletScreenEvent.OnContinueClickedEvent -> {
+                updateBottomSheetState(shouldShow = false)
+                emitNavigationEffect(
+                    NavigationEffect.NavigateForwardTo(route = OnboardingDestinations.SETUP_PROFILE)
+                )
+            }
         }
     }
 
-    fun bottomSheetClosed() {
-        viewModelScope.launch {
-            _walletOptionEvent.update { current ->
-                current.copy(shouldShow = false)
-            }
+    private fun updateWalletOption(option: WalletOption) {
+        _state.update { currentState ->
+            currentState.copy(
+                option = option,
+                shouldShow = true
+            )
+        }
+    }
+
+    private fun updateBottomSheetState(shouldShow: Boolean) {
+        _state.update { currentState ->
+            currentState.copy(
+                shouldShow = shouldShow
+            )
         }
     }
 }
