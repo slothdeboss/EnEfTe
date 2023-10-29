@@ -36,6 +36,7 @@ fun InputTextField(
     val colors = EnEfTeTheme.colors
     val typography = EnEfTeTheme.typography
     val dimensions = EnEfTeTheme.dimensions
+    val shapes = EnEfTeTheme.shapes
 
     Column(
         modifier = modifier.wrapContentHeight(),
@@ -47,7 +48,7 @@ fun InputTextField(
                 .height(height),
             value = state.value,
             onValueChange = onValueChanged,
-            shape = RoundedCornerShape(10.dp),
+            shape = shapes.default,
             colors = TextFieldDefaults.colors(
                 focusedContainerColor = colors.secondary,
                 unfocusedContainerColor = colors.secondary,

@@ -31,6 +31,7 @@ import com.slothdeboss.enefte.domain.listings.TrendingListing
 import com.slothdeboss.enefte.ui.components.expireDate.ExpireDateLabel
 import com.slothdeboss.enefte.ui.components.balance.PriceBox
 import com.slothdeboss.enefte.ui.components.balance.PriceBoxDefaults
+import com.slothdeboss.enefte.ui.components.image.VerifiedProfileImage
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 
 private const val REQUIRED_CARD_WIDTH = 268
@@ -131,9 +132,9 @@ fun TrendingListingItem(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(dimensions.dimension8)
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_pfp),
-                    contentDescription = null
+                VerifiedProfileImage(
+                    image = painterResource(id = R.drawable.ic_pfp),
+                    isVerified = true
                 )
 
                 Text(

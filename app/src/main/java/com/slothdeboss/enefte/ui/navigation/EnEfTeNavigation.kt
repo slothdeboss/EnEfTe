@@ -18,7 +18,7 @@ fun EnEfTeNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = OnboardingDestinations.ONBOARDING
+        startDestination = HomeDestinations.HOME_CONTAINER
     ) {
         composable(route = OnboardingDestinations.ONBOARDING) {
             OnboardingRoute(navController = navController)
