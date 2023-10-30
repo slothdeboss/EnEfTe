@@ -15,15 +15,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.slothdeboss.enefte.R
-import com.slothdeboss.enefte.ui.components.util.ComponentSize
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 
 @Composable
 fun CategoryItem(
     modifier: Modifier = Modifier,
-    size: ComponentSize = CategoryItemDefaults.size(),
+    size: DpSize = CategoryItemDefaults.size(),
     onClick: (id: String) -> Unit = {}
 ) {
     Box(
@@ -56,8 +56,8 @@ object CategoryItemDefaults {
     fun size(
         height: Dp = 96.dp,
         width: Dp = 130.dp
-    ): ComponentSize {
-        return ComponentSize(
+    ): DpSize {
+        return DpSize(
             height = height,
             width = width
         )

@@ -23,18 +23,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.slothdeboss.enefte.R
 import com.slothdeboss.enefte.ui.components.image.VerifiedProfileImage
 import com.slothdeboss.enefte.ui.components.titled.TitledStats
-import com.slothdeboss.enefte.ui.components.util.ComponentSize
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 
 @Composable
 fun DiscoverCollectionItem(
     modifier: Modifier = Modifier,
     onClick: (id: String) -> Unit = {},
-    size: ComponentSize = DiscoverCollectionDefaults.size()
+    size: DpSize = DiscoverCollectionDefaults.size()
 ) {
     val dimensions = EnEfTeTheme.dimensions
     val typography = EnEfTeTheme.typography
@@ -109,8 +109,8 @@ object DiscoverCollectionDefaults {
     fun size(
         height: Dp = 152.dp,
         width: Dp = 148.dp
-    ): ComponentSize {
-        return ComponentSize(
+    ): DpSize {
+        return DpSize(
             height = height,
             width = width
         )

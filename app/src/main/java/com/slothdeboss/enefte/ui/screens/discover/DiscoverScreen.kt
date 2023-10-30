@@ -96,7 +96,7 @@ fun DiscoverScreen() {
                         rows = GridCells.Fixed(count = 2),
                         contentPadding = PaddingValues(horizontal = dimensions.dimension24),
                         horizontalArrangement = Arrangement.spacedBy(dimensions.dimension16),
-                        verticalArrangement = Arrangement.spacedBy(dimensions.dimension8)
+                        verticalArrangement = Arrangement.spacedBy(dimensions.dimension16)
                     ) {
                         items(10) {
                             DiscoverCollectionItem()

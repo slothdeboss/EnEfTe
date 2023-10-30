@@ -19,17 +19,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import com.slothdeboss.enefte.R
 import com.slothdeboss.enefte.ui.components.collections.CollectionLabel
 import com.slothdeboss.enefte.ui.components.like.LikeCounter
-import com.slothdeboss.enefte.ui.components.util.ComponentSize
 import com.slothdeboss.enefte.ui.theme.EnEfTeTheme
 
 @Composable
 fun ListingItemSmall(
     modifier: Modifier = Modifier,
-    size: ComponentSize = ListingItemDefaults.sizeSmall()
+    size: DpSize = ListingItemDefaults.sizeSmall()
 ) {
     val colors = EnEfTeTheme.colors
     val shapes = EnEfTeTheme.shapes
@@ -84,8 +84,8 @@ object ListingItemDefaults {
     fun sizeSmall(
         height: Dp = 216.dp,
         width: Dp = 158.dp
-    ): ComponentSize {
-        return ComponentSize(
+    ): DpSize {
+        return DpSize(
             height = height,
             width = width
         )
