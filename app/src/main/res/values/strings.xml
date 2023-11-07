@@ -59,4 +59,11 @@
     <string name="back">Back</string>
     <string name="crypto_wallet">Crypto wallet</string>
     <string name="welcome_image">Welcome image</string>
+    <string name="search">Search</string>
+    <string name="close">Close</string>
+    <string name="search_your_nft">Search your NFT...</string>
+    <string name="categories">Categories</string>
+    <string name="items">Items</string>
+    <string name="max_collection_cap">10K</string>
+    <string name="owners">Owners</string>
 </resources>
